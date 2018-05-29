@@ -122,7 +122,10 @@ describe('Hoover', function() {
     });
   });
   describe('#report', function() {
-    // TODO: test for stdout output
-    it.skip('should work');
+    it('should a string with the right results', function() {
+      const h = new Hoover(example);
+      const result = h.report();
+      assert.equal(result, '1 3\n1')
+    });
   });
 });
