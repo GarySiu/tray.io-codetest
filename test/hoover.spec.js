@@ -26,17 +26,22 @@ describe('Hoover', function() {
 
     it('should have the right room size', function() {
       const h = new Hoover(example);
-      assert.deepEqual(h.roomSize, [5, 5])
+      assert.deepEqual(h.roomSize, [5, 5]);
+    });
+
+    it('should have a starting coord', function() {
+      const h = new Hoover(example);
+      assert.deepEqual(h.startCoord, [1, 2]);
     });
 
     it('should have the right number of patches of dirt', function() {
       const h = new Hoover(example);
-      assert.equal(h.dirtCoords.length, 4)
+      assert.equal(h.dirtCoords.length, 3)
     });
 
     it('should convert the dirt strings to coords', function() {
       const h = new Hoover(example);
-      assert.deepEqual(h.dirtCoords[0], [1, 2]);
+      assert.deepEqual(h.dirtCoords[0], [1, 0]);
     });
 
     it('should have the right number of instructions', function() {
