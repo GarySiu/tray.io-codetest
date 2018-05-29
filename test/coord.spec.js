@@ -8,4 +8,10 @@ describe('Coord', function() {
       assert.deepEqual(c, {x: 5, y: 3});
     });
   });
+  describe('#toString', function() {
+    it('it should convert a coord to a space delimited string', function() {
+      const c = new Coord('4 2');
+      assert.equal(c.toString(), '4 2')
+    });
+  });
 });
