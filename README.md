@@ -9,3 +9,4 @@ This is a very minimal solution to the test.
 * cross platform reuse
 * improved testing
 * add linting, editorcfg etc. for more consistent code
+* inline documentation using JSDoc or similar
