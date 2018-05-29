@@ -4,5 +4,5 @@ const Hoover = require('./lib/hoover');
 fs.readFile('./input.txt', 'utf8', (err, data) => {
   if (err) throw err;
   const h = new Hoover(data);
-  h.report();
+  console.log(h.report());
 })

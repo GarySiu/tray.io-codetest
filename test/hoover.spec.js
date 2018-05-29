@@ -81,6 +81,46 @@ describe('Hoover', function() {
       assert.deepEqual(h.curCoord, {x: 0, y: 2});
     });
   });
+  describe('#cleanDirt', function() {
+    it('should not do anything if there is no dirt', function() {
+      let setup = '1 3\n';
+         setup += '0 0\n';
+         setup += 'NNNN';
+      const h = new Hoover(setup);
+      assert.equal(h.dirtCoords.length, 0);
+      h.report();
+      assert.equal(h.cleaned, 0);
+    });
+    it('should increment cleaned if it passes over dirt', function() {
+      let setup = '1 3\n';
+         setup += '0 0\n';
+         setup += '0 1\n';
+         setup += 'NNNN';
+      const h = new Hoover(setup);
+      h.report();
+      assert.equal(h.cleaned, 1);
+    });
+    it('should only clean dirt once', function() {
+      let setup = '1 3\n';
+         setup += '0 0\n';
+         setup += '0 1\n';
+         setup += 'NNSS';
+      const h = new Hoover(setup);
+      h.report();
+      assert.equal(h.cleaned, 1);
+    });
+    it('should remove dirt coords once cleaned', function() {
+      let setup = '2 3\n';
+         setup += '0 0\n';
+         setup += '0 1\n';
+         setup += '1 1\n';
+         setup += 'NNSS';
+      const h = new Hoover(setup);
+      h.report();
+      assert.equal(h.dirtCoords.length, 1);
+      assert.deepEqual(h.dirtCoords[0], {x: 1, y: 1});
+    });
+  });
   describe('#report', function() {
     // TODO: test for stdout output
     it.skip('should work');
