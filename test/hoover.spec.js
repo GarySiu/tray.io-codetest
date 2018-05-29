@@ -2,14 +2,13 @@ const Hoover = require('../lib/hoover');
 const assert = require('assert');
 
 describe('Hoover', function() {
+  let example  = '5 5\n';
+      example += '1 2\n'
+      example += '1 0\n'
+      example += '2 2\n'
+      example += '2 3\n'
+      example += 'NNESEESWNWW';
   describe('#constructor', function() {
-
-    let example  = '5 5\n';
-        example += '1 2\n'
-        example += '1 0\n'
-        example += '2 2\n'
-        example += '2 3\n'
-        example += 'NNESEESWNWW';
 
     it('should populate data from a string', function() {
       const data1 = 'a\nb\nc';
@@ -26,23 +25,30 @@ describe('Hoover', function() {
     });
 
     it('should have the right room size', function() {
-      const h1 = new Hoover(example);
-      assert.deepEqual(h1.roomSize, [5, 5])
+      const h = new Hoover(example);
+      assert.deepEqual(h.roomSize, [5, 5])
     });
 
     it('should have the right number of patches of dirt', function() {
-      const h1 = new Hoover(example);
-      assert.equal(h1.dirtCoords.length, 4)
+      const h = new Hoover(example);
+      assert.equal(h.dirtCoords.length, 4)
     });
 
     it('should convert the dirt strings to coords', function() {
-      const h1 = new Hoover(example);
-      assert.deepEqual(h1.dirtCoords[0], [1, 2]);
+      const h = new Hoover(example);
+      assert.deepEqual(h.dirtCoords[0], [1, 2]);
     });
 
     it('should have the right number of instructions', function() {
-      const h1 = new Hoover(example);
-      assert.equal(h1.instructions.length, 11);
+      const h = new Hoover(example);
+      assert.equal(h.instructions.length, 11);
+    });
+  });
+  describe('#toCoord', function() {
+    it('should convert a space seperated string to the form [x,y]', function() {
+      const h = new Hoover(example);
+      const coord = h.toCoord('5 9');
+      assert.deepEqual(coord, [5, 9]);
     });
   });
   describe('#report', function() {
