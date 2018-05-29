@@ -35,6 +35,52 @@ describe('Hoover', function() {
       assert.equal(h.instructions.length, 11);
     });
   });
+  describe('#move', function() {
+    it('should handle N if there is space to move', function() {
+      const h = new Hoover(example);
+      h.move('N');
+      assert.deepEqual(h.curCoord, {x: 1, y: 3});
+    });
+    it('should handle N if there is no space to move', function() {
+      const h = new Hoover(example);
+      h.curCoord.y = 5;
+      h.move('N');
+      assert.deepEqual(h.curCoord, {x: 1, y: 5});
+    });
+    it('should handle E if there is space to move', function() {
+      const h = new Hoover(example);
+      h.move('E');
+      assert.deepEqual(h.curCoord, {x: 2, y: 2});
+    });
+    it('should handle E if there is no space to move', function() {
+      const h = new Hoover(example);
+      h.curCoord.x = 4;
+      h.move('E');
+      assert.deepEqual(h.curCoord, {x: 4, y: 2});
+    });
+    it('should handle S if there is space to move', function() {
+      const h = new Hoover(example);
+      h.move('S');
+      assert.deepEqual(h.curCoord, {x: 1, y: 1});
+    });
+    it('should handle S if there is no space to move', function() {
+      const h = new Hoover(example);
+      h.curCoord.y = 0;
+      h.move('S');
+      assert.deepEqual(h.curCoord, {x: 1, y: 0});
+    });
+    it('should handle W if there is space to move', function() {
+      const h = new Hoover(example);
+      h.move('W');
+      assert.deepEqual(h.curCoord, {x: 0, y: 2});
+    });
+    it('should handle W if there is no space to move', function() {
+      const h = new Hoover(example);
+      h.curCoord.x = 0;
+      h.move('W');
+      assert.deepEqual(h.curCoord, {x: 0, y: 2});
+    });
+  });
   describe('#report', function() {
     // TODO: test for stdout output
     it.skip('should work');
